@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 from urllib.parse import urljoin
 from markdownify import markdownify as md
-
+import json
 
 url = "https://fastapi.tiangolo.com/"
 response = requests.get(url)
