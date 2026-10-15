@@ -29,6 +29,13 @@ if response.status_code == 200:
         title = soup.find("title").get_text(strip=True)
         for a in article.find_all("a", class_="headerlink"):
             a.decompose()
+        for d in article.find_all("details"):
+            summary = d.find("summary")
+            if summary is None:
+                continue
+            label = summary.get_text()
+            if "Full file preview" in label or "Other versions" in label:
+                d.decompose()
         text = md(str(article), heading_style="ATX")
         name = link.split("/")[-2]
         if name in names:
